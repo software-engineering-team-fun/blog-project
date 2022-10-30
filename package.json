@@ -4,7 +4,8 @@
   "description": "Final blog project for software engineering",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "sass --watch public/scss:public/css"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,12 @@
   },
   "homepage": "https://github.com/software-engineering-team-fun/blog-project#readme",
   "dependencies": {
+    "autoprefixer": "^10.4.13",
     "bootstrap": "^5.2.2",
-    "firebase": "^9.12.1",
-    "font-awesome": "^4.7.0"
+    "firebase": "^9.13.0",
+    "font-awesome": "^4.7.0",
+    "postcss": "^8.4.18",
+    "postcss-cli": "^10.0.0",
+    "sass": "^1.55.0"
   }
 }
