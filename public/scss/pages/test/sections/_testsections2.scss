@@ -1,0 +1,9 @@
+//section 2 of test page styles. 
+
+.test2{
+    margin-top: 5rem;
+    color: blue;
+    &:hover{
+        color: red;
+    }
+}

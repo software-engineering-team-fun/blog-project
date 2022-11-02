@@ -1,0 +1,8 @@
+//section 1 of test page styles. 
+
+.test{
+    color: red;
+    &:hover{
+        color:blue;
+    }
+}
