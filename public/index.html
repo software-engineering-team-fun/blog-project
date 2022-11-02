@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>LiveBlog</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.12.1/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.12.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.12.1/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <!--Links-->
+      <div class="navbar-nav">
+          <a href="/home" class="nav-item nav-link">Home</a>
+          <a href="/about" class="nav-item nav-link">About</a>
+          <a href="/login" class="nav-item nav-link">Login</a>
+      </div>
+    </nav>
+    <!-- TODO: Make a logo -->
+    <div class="about-section">
+        <h1>Welcome to LiveBlog</h1>
+        <p>"<i>We're not Twitter.</i>"</p>
+    </div>
+
+    <div class="slide" style="background-color:rgb(225, 236, 236)">
+      <div class="row" style="padding-left:10vmin; padding-top:10vmin;">
+        <div class="col-sm" style="padding-top:30vmin;">
+          <h2>Putting the forum back into the people's hands.</h2>
+          <p>LiveBlog is a free and open source public forum for people to talk about whatever they want. We have a main deployment <a href="">here</a>, but feel free to take the code and deploy it locally.</p>
+        </div>
+        <!-- Credit: Daniel Lucero-->
+        <div class="col-sm">
+          <img src="https://daniellucero.com/wp-content/uploads/2022/08/d3464a4351fdf340ccb6bb37c281381a.gif">
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="row" style="padding-left:20vmin; padding-top:10vmin;">
+        <div class="col-sm">
+          <h2>How to Get Started.</h2>
+          <ol>
+            <li>Create an account by clicking <a href="/login">sign up</a>.</li>
+            <li>Sign in, and click the "New Post" button.</li>
+            <li>Post!</li>
+          </ol>
+        </div>
+        <div class="col-sm">
+          <h2>Features In Progress</h2>
+          <ul>
+            <li>Authentication</li>
+            <li>Seeing everything that other people can see</li>
+            <li>TODO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="row" style="padding-left:20vmin; padding-top:10vmin;">
+        <div class="col-sm" style="padding-left:10vmin;padding-top:20vmin;">
+          <img src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp">
+        </div>
+        <div class="col-sm">
+          <h2>Find us on GitHub.</h2>
+          <a href="https://github.com/software-engineering-team-fun/blog-project">[REPLACE WITH GITHUB LOGO]</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
