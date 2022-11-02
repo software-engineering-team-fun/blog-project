@@ -1,8 +1,8 @@
-body {
+.aboutBody {
     margin: 0;
   }
 
-  .col-sm {
+  .member {
     margin-bottom: 16px;
     padding: 0 8px; 
     display: inline-block;    
@@ -13,19 +13,19 @@ body {
 
   }
   
-  .card {
+  #box {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
   }
   
-  .about-section {
+  #about-sec {
     padding: 75px;
     text-align: center;
     background-color: #474e5d;
     color: white;
   }
   
-  .container {
+  #container {
     padding: 0 16px;
   }
   
