@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>LiveBlog</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.12.1/firebase-app-compat.js"></script>
@@ -22,30 +25,69 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <!--Links-->
+      <div class="navbar-nav">
+          <a href="/home" class="nav-item nav-link">Home</a>
+          <a href="/about" class="nav-item nav-link">About</a>
+          <a href="/login" class="nav-item nav-link">Login</a>
+      </div>
+    </nav>
+    <!-- TODO: Make a logo -->
+    <div class="about-section">
+        <h1>Welcome to LiveBlog</h1>
+        <p>"<i>We're not Twitter.</i>"</p>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <div class="slide" style="background-color:rgb(225, 236, 236)">
+      <div class="row" style="padding-left:10vmin; padding-top:10vmin;">
+        <div class="col-sm" style="padding-top:30vmin;">
+          <h2>Putting the forum back into the people's hands.</h2>
+          <p>LiveBlog is a free and open source public forum for people to talk about whatever they want. We have a main deployment <a href="">here</a>, but feel free to take the code and deploy it locally.</p>
+        </div>
+        <!-- Credit: Daniel Lucero-->
+        <div class="col-sm">
+          <img src="https://daniellucero.com/wp-content/uploads/2022/08/d3464a4351fdf340ccb6bb37c281381a.gif">
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="row" style="padding-left:20vmin; padding-top:10vmin;">
+        <div class="col-sm">
+          <h2>How to Get Started.</h2>
+          <ol>
+            <li>Create an account by clicking <a href="/login">sign up</a>.</li>
+            <li>Sign in, and click the "New Post" button.</li>
+            <li>Post!</li>
+          </ol>
+        </div>
+        <div class="col-sm">
+          <h2>Features In Progress</h2>
+          <ul>
+            <li>Authentication</li>
+            <li>Seeing everything that other people can see</li>
+            <li>TODO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="row" style="padding-left:20vmin; padding-top:10vmin;">
+        <div class="col-sm" style="padding-left:10vmin;padding-top:20vmin;">
+          <img src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp">
+        </div>
+        <div class="col-sm">
+          <h2>Find us on GitHub.</h2>
+          <a href="https://github.com/software-engineering-team-fun/blog-project">[REPLACE WITH GITHUB LOGO]</a>
+        </div>
+      </div>
+    </div>
+
+
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
