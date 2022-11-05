@@ -56,5 +56,4 @@ getDocs(colRef)
     });
    } 
 
-//6 min into video
 //writeNames();
