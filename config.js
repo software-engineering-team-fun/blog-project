@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import 'bootstrap/dist/css/bootstrap.css';
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+//import 'bootstrap/dist/css/bootstrap.css';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,3 +22,39 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+//Initialize Firestore
+const db = getFirestore();
+const colRef = collection(db, "test-collection");
+//const testCollection = doc(db, 'test-collection/test-names');
+
+//Get Collection Data
+getDocs(colRef)
+  .then((snapshot) => {
+    let names = [];
+    snapshot.docs.forEach((doc) => {
+      names.push({...doc.data(), id: doc.id })
+    })
+    console.log(names)
+  })
+  .catch(err => {
+    console.log(err.message)
+  });
+
+//Writing to Firestore test-collection doc
+ function writeNames(){
+  const docData = {
+    firstName: "John",
+    lastName: "Smith" 
+  }
+  setDoc(testCollection, docData, {merge: true})
+    .then(() => {
+      console.log("The value has been written to the database");
+    })
+    .catch((error) => {
+      console.log(`Error adding data: ${error}`);
+    });
+   } 
+
+//6 min into video
+//writeNames();
