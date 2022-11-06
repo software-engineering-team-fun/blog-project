@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Login</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <!--Links-->
+      <div class="navbar-nav">
+          <a href="/home" class="nav-item nav-link">Home</a>
+          <a href="/about" class="nav-item nav-link">About</a>
+          <a href="" class="nav-item nav-link">Login</a>
+      </div>
+    </nav>
+    <div class="container text-center">
+      <div class="row ">
+          <div class="col">
+              <div class="card p-3 mb-2 bg-dark text-white">
+                  <!-- TODO: Add functionality -->
+                  <h2>Login</h1>
+                  <div class="form-group">
+                    <label for ="patAge">Username</label>
+                    <input type = "text"class="form-control" id = "login_username" name = "login_username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for ="patAge">Password</label>
+                  <input type = "text" class="form-control" id = "login_password" name = "login_password" placeholder="Password">
+                  <button class="button mt-2" value="Sign In" type="button" onclick="sendData()">Sign In
+                </button>
+              </div>
+                  </div>
+              </div>
+              <div class="col">
+                <div class="card p-3 mb-2 bg-dark text-white">
+                    <!-- TODO: Add functionality -->
+                    <h2>Sign up</h1>
+                    <div class="form-group">
+                      <label for ="patAge">Email</label>
+                      <input type = "text" class="form-control" id = "signup_Email" name = "signup_Email" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for ="patAge">Password</label>
+                    <input type = "text" class="form-control" id = "signup_password" name = "signup_password" placeholder="Password">
+                    <button class="button mt-2" value="Sign up" type="button" onclick="sendData()">Sign up
+                </div>
+                    </div>
+                </div>
+              </div>
+              <h1>OR</h1>
+              <div class="row ">
+                <!-- TODO: Add functionality -->
+                <button class="button mt-2" value="google_sign_in" type="button" onclick="sendData()">Sign in with google
+              </div>
+          </div>
+      </div>
+
+  </body>
+</html>
