@@ -7,12 +7,16 @@ app.use(express.static("public"));
 
 
 app.get('/home', (req,res,next) => {
-    res.send("Hello Welcome home")
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.get('/about', function(req, res) {
     res.sendFile(path.join(__dirname, '/public/about.html'));
-  });
+});
+
+app.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/login.html'));
+});
 
 app.listen(port);
 console.log('Server started at http://localhost:' + port);
