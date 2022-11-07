@@ -3,32 +3,37 @@
 const functions = require('firebase-functions')
 const express = require('express');
 const path = require('path');
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 const cors = require('cors')({origin: true});
 
 const app = express();
+app.use(expressCspHeader({
+    directives: {
+      'default-src': [expressCspHeader.NONE],
+      'img-src': [expressCspHeader.SELF],
+    }
+}));
 app.use(cors);
-const port = process.env.PORT || 3000;
 
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/index.htl'));
+    res.sendFile(path.join(__dirname, '../public/pages/index.html'));
   });
 
 app.get('/home', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/pages/index.html'));
 });
 
 app.get('/about', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/about.html'));
+    res.sendFile(path.join(__dirname, '../public/pages/about.html'));
 });
 
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/login.html'));
+    res.sendFile(path.join(__dirname, '../public/pages/login.html'));
 });
 
 process.on('uncaughtException', function (err) {
     console.log(err);
 }); 
 
-exports.app = functions.https.onRequest(app);
 
-app.listen(port);
+exports.app = functions.https.onRequest(app);
