@@ -16,19 +16,19 @@ app.use(expressCspHeader({
 app.use(cors);
 
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/pages/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
 app.get('/home', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/pages/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.get('/about', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/pages/about.html'));
+    res.sendFile(path.join(__dirname, '../public/about.html'));
 });
 
 app.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/pages/login.html'));
+    res.sendFile(path.join(__dirname, '../public/login.html'));
 });
 
 process.on('uncaughtException', function (err) {
