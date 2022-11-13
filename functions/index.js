@@ -31,6 +31,11 @@ app.get('/login', function(req, res) {
     res.sendFile(path.join(__dirname, '../public/login.html'));
 });
 
+// TODO: Only make this accessible when authenticated
+app.get('/create', function(req, res) {
+    res.sendFile(path.join(__dirname, '../public/create.html'));
+});
+
 process.on('uncaughtException', function (err) {
     console.log(err);
 }); 
