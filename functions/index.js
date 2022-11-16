@@ -9,7 +9,6 @@ const cors = require("cors")({origin: true});
 const app = express();
 app.use(cors);
 
-
 // view engine setup
 app.engine('hbs', engine());
 app.set("views", path.join(__dirname, "./pages"));
