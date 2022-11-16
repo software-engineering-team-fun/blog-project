@@ -12,9 +12,8 @@ app.use(cors);
 
 // view engine setup
 app.engine('hbs', engine());
-app.set("views", path.join(__dirname, "../public/pages"));
+app.set("views", path.join(__dirname, "./pages"));
 app.set("view engine", "hbs");
-app.use("/static", express.static('../public/pages'));
 
 app.get("/", (req, res) => {
     //res.send("Working on basic.")
