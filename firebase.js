@@ -32,6 +32,7 @@ const colRef = collection(db, "test-collection");
 const auth = getAuth();
 
 //Local Testing
+
 //connectAuthEmulator(auth, "http://localhost:9099");
 
 const loginEmailPasword = async () => {
