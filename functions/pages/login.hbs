@@ -14,9 +14,9 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <!--Links-->
       <div class="navbar-nav">
-          <a href="/home" class="nav-item nav-link">Home</a>
-          <a href="/about" class="nav-item nav-link">About</a>
-          <a href="/login" class="nav-item nav-link">Login</a>
+          <a href="home.html" class="nav-item nav-link">Home</a>
+          <a href="about.html" class="nav-item nav-link">About</a>
+          <a href="login.html" class="nav-item nav-link">Login</a>
       </div>
     </nav>
     <div class="container text-center">
@@ -27,13 +27,12 @@
                   <h2>Login</h1>
                   <div class="form-group">
                     <label for ="patAge">Username</label>
-                    <input type = "text"class="form-control" id = "login_username" name = "login_username" placeholder="Username">
+                    <input type = "email"class="form-control" id = "txtEmail" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label for ="patAge">Password</label>
-                  <input type = "text" class="form-control" id = "login_password" name = "login_password" placeholder="Password">
-                  <button class="button mt-2" value="Sign In" type="button" onclick="sendData()">Sign In
-                </button>
+                  <input type = "password" class="form-control" id = "txtPassword" placeholder="Password">
+                  <button id="btnLogin" class="button mt-2" value="Sign In" type="button">Sign In</button>
               </div>
                   </div>
               </div>
@@ -43,12 +42,12 @@
                     <h2>Sign up</h1>
                     <div class="form-group">
                       <label for ="patAge">Email</label>
-                      <input type = "text" class="form-control" id = "signup_Email" name = "signup_Email" placeholder="Email">
+                      <input type = "email" class="form-control" id = "signupEmail" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for ="patAge">Password</label>
-                    <input type = "text" class="form-control" id = "signup_password" name = "signup_password" placeholder="Password">
-                    <button class="button mt-2" value="Sign up" type="button" onclick="sendData()">Sign up
+                    <input type = "password" class="form-control" id = "signupPassword" placeholder="Password">
+                    <button id="btnSignup"class="button mt-2" value="Sign up" type="button">Sign up</button>
                 </div>
                     </div>
                 </div>
@@ -56,10 +55,11 @@
               <h1>OR</h1>
               <div class="row ">
                 <!-- TODO: Add functionality -->
-                <button class="button mt-2" value="google_sign_in" type="button" onclick="sendData()">Sign in with google
+                <button class="button mt-2" value="google_sign_in" type="button">Sign In with google</button>
               </div>
           </div>
       </div>
 
   </body>
+  <script src="./js/bundle.js"></script>
 </html>
