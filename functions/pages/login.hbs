@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/fontawesome.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
   </head>
   <body>
@@ -28,13 +30,12 @@
                   <h2>Login</h1>
                   <div class="form-group">
                     <label for ="patAge">Username</label>
-                    <input type = "text"class="form-control" id = "login_username" name = "login_username" placeholder="Username">
+                    <input type = "email"class="form-control" id = "txtEmail" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label for ="patAge">Password</label>
-                  <input type = "text" class="form-control" id = "login_password" name = "login_password" placeholder="Password">
-                  <button class="button mt-2" value="Sign In" type="button" onclick="sendData()">Sign In
-                </button>
+                  <input type = "password" class="form-control" id = "txtPassword" placeholder="Password">
+                  <button id="btnLogin" class="button mt-2" value="Sign In" type="button">Sign In</button>
               </div>
                   </div>
               </div>
@@ -44,12 +45,12 @@
                     <h2>Sign up</h1>
                     <div class="form-group">
                       <label for ="patAge">Email</label>
-                      <input type = "text" class="form-control" id = "signup_Email" name = "signup_Email" placeholder="Email">
+                      <input type = "email" class="form-control" id = "signupEmail" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for ="patAge">Password</label>
-                    <input type = "text" class="form-control" id = "signup_password" name = "signup_password" placeholder="Password">
-                    <button class="button mt-2" value="Sign up" type="button" onclick="sendData()">Sign up
+                    <input type = "password" class="form-control" id = "signupPassword" placeholder="Password">
+                    <button id="btnSignup"class="button mt-2" value="Sign up" type="button">Sign up</button>
                 </div>
                     </div>
                 </div>
@@ -57,10 +58,11 @@
               <h1>OR</h1>
               <div class="row ">
                 <!-- TODO: Add functionality -->
-                <button class="button mt-2" value="google_sign_in" type="button" onclick="sendData()">Sign in with google
+                <button class="button mt-2" value="google_sign_in" type="button">Sign In with google</button>
               </div>
           </div>
       </div>
 
   </body>
+  <script src="./js/bundle.js"></script>
 </html>
