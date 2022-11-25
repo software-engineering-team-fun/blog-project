@@ -34,6 +34,10 @@ app.get("/login", function(req, res) {
   // res.sendFile(path.join(__dirname, "../public/pages/login.html"));
 });
 
+app.get("/create", function(req, res) {
+  res.render("create")
+// res.sendFile(path.join(__dirname, "../public/pages/about.html"));
+});
 process.on("uncaughtException", function(err) {
   console.log(err);
 });
