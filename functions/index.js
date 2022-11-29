@@ -8,6 +8,7 @@ const cors = require("cors")({origin: true});
 
 const app = express();
 app.use(cors);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.engine('hbs', engine());

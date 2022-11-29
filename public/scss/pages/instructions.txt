@@ -1,2 +1,0 @@
-Here is the directory for the specific page styles.
-We will have sub folders to styling the specific sections of those pages. 

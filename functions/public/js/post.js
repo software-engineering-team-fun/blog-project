@@ -1,24 +1,39 @@
 // Originally from HackTheBox's Horror Feeds
 // Modified by An00bRektn on https://github.com/Lewis-Cyber-Defense/cfc-green
+
+import "firebase/firestore"
+const db = firebase.firestore()
+
 function toggleInputs(state) {
 	$("#title").prop("disabled", state);
 	$("#blogbody").prop("disabled", state);
 	$("#post-btn").prop("disabled", state);
 }
 
-
-async function createpost() {
+function createpost() {
+	console.log("Hello Mom!")
 
 	toggleInputs(true);
 
-	let title = $("#title").val();
-	let body = $("#blogbody").val();
+	const title = $("#title").val();
+	const body = $("#blogbody").val();
 	if ($.trim(title) === '' || $.trim(body) === '') {
 		toggleInputs(false);
         alert('A Title and Body are required!')
 		return;
 	}
+	db.collection("blogs").add({
+		name: title,
+		body: body
+	})
+	.then((docRef) => {
+		console.log("Document written with ID: ", docRef.id);
+	})
+	.catch((error) => {
+		console.error("Error adding document: ", error);
+	});
 
+	/** 
     // TODO: Do we need to include the user here?
     // Addendum: We'll probably need to have a session cookie or
     //           something here
@@ -47,5 +62,5 @@ async function createpost() {
 			alert('Something went wrong!')
 		});
 
-	toggleInputs(false);
+	toggleInputs(false);*/
 }
