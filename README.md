@@ -2,7 +2,7 @@
 > Team Fun | Software Engineering
 
 <p align="center">
-<img src="public/img/livebloglogo-full.svg" height=400px width=400px>
+<img src="functions/public/img/livebloglogo-full.svg" height=400px width=400px>
 </p>
 <p align="center">https://final-project-9b3c9.firebaseapp.com</p>
 
