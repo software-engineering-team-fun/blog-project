@@ -1,2 +1,0 @@
-In this directory we add component styles. 
-Like buttons, typography, mixins, animations, etc.
