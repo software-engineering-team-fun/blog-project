@@ -105,3 +105,12 @@ dist
 
 # MacOS .DS_Store
 .DS_Store
+
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+final-project-9b3c9-firebase-adminsdk-dr6w0-8fc882c766.json
+
+.firebase
