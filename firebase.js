@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,11 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-//Initialize Firestore
-const db = getFirestore();
-const colRef = collection(db, "test-collection");
-//const testCollection = doc(db, 'test-collection/test-names');
-
 //Initialize Authentication Login
 const auth = getAuth();
 
@@ -35,14 +29,14 @@ const auth = getAuth();
 //connectAuthEmulator(auth, "http://localhost:9099");
 
 const loginEmailPasword = async () => {
-  const loginEmail = txtEmail.value;
-  const loginPassword = txtPassword.value;
+  const loginAcountEmail = loginEmail.value;
+  const loginAccountPassword = loginPassword.value;
 
   try{
-    const userCredentials = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+    const userCredentials = await signInWithEmailAndPassword(auth, loginAcountEmail, loginAccountPassword);
     console.log(userCredentials.user);
     console.log("LOGIN SUCESSFUL");
-    window.location.replace('/test-database.html');
+    window.location.replace('/feed');
   }
   catch(error){
     console.log(error);
@@ -62,7 +56,7 @@ const createAccount = async () => {
     const userCredentials = await createUserWithEmailAndPassword(auth, accountEmail, accountPassword);
     console.log(userCredentials.user);
     console.log("ACCOUNT CREATED");
-    window.location.replace('/test-database.html');
+    window.location.replace('/feed');
   }
   catch(error){
     console.log(error);
@@ -79,10 +73,14 @@ const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if(user) {
       console.log(user);
+      if(window.location.pathname != '/login'){
+        document.getElementById('loginNav').innerHTML = `<a style="padding-right:1.2rem"class="nav-link" href="" id="loginNav">Logout </a>`;
+        document.getElementById('loginNav').addEventListener('click', logout);
+      }
     }
     else{
       console.log("Not signed in");
-      if(window.location.pathname == "/test-database.html"){
+      if(window.location.pathname == "/feed" || window.location.pathname == "/create"){
         window.location.replace('/login');
       }
     }
@@ -95,36 +93,6 @@ const logout = async () => {
   await signOut(auth);
   window.location.replace('/login');
 }
-if(window.location.pathname == "/test-database.html"){
+if(window.location.pathname == "/create" || window.location.pathname == "/feed"){
   btnSignout.addEventListener("click", logout);
 }
-
-//Get Collection Data
-getDocs(colRef)
-  .then((snapshot) => {
-    let names = [];
-    snapshot.docs.forEach((doc) => {
-      names.push({...doc.data(), id: doc.id })
-    })
-    console.log(names)
-  })
-  .catch(err => {
-    console.log(err.message)
-  });
-
-//Writing to Firestore test-collection doc
- function writeNames(){
-  const docData = {
-    firstName: "John",
-    lastName: "Smith" 
-  }
-  setDoc(testCollection, docData, {merge: true})
-    .then(() => {
-      console.log("The value has been written to the database");
-    })
-    .catch((error) => {
-      console.log(`Error adding data: ${error}`);
-    });
-   } 
-
-//writeNames();
