@@ -54,6 +54,10 @@ app.get("/create", function(req, res) {
   res.render("create")
 });
 
+app.get("/feed", function(req, res) {
+  res.render("feed")
+});
+
 //send to database
 app.post('/sendBlog', async (req, res) =>{
   const blog = {

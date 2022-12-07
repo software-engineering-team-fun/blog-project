@@ -12,11 +12,27 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <!--Links-->
-      <div class="navbar-nav">
-          <a href="home.html" class="nav-item nav-link">Home</a>
-          <a href="about.html" class="nav-item nav-link">About</a>
-          <a href="login.html" class="nav-item nav-link">Login</a>
+       <a style="padding-left:1.0rem" class="navbar-brand">LiveBlog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/create">Create</a>
+      </li>
+    </ul>
+    <div class="navbar-nav ms-auto">
+          <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a>
       </div>
-    </nav>
+  </div>
+</nav>
 </body>
+<script src="dist/bundle.js"></script>
+</html>
