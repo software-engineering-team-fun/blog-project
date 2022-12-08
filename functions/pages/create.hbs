@@ -37,7 +37,7 @@
       </li>
     </ul>
     <div class="navbar-nav ms-auto">
-          <a style="padding-right:1.2rem"class="nav-link" href="/login">Login </a>
+          <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a>
       </div>
   </div>
 </nav>
@@ -45,7 +45,7 @@
         <h2>Create a Post</h2>
         <form id="createform" method="post" action="/sendBlog">
             <input type="text" class="form-control" id="title" placeholder="Title" name="title"required>
-            <textarea id="body" name="body">Hello, world!</textarea>
+            <textarea id="blogbody" name="body">Hello, world!</textarea>
             <button id="post-btn">Post!</button>
         </form>
     </div>
@@ -57,3 +57,5 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
+<script src="dist/bundle.js"></script>
+</html>
