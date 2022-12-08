@@ -70,6 +70,7 @@ app.get("/feed", async function(req, res) {
         dat = doc.data()
         // I know we joked about not caring about security but since we're deploying publicly
         // this is probably the responsible thing to do
+        dat.title = DOMPurify.sanitize(dat.title, {USE_PROFILES: {html: true}});
         dat.body = DOMPurify.sanitize(dat.body, {USE_PROFILES: {html: true}});
         ids.push(doc.id)
         blogs.push(dat)
@@ -77,7 +78,7 @@ app.get("/feed", async function(req, res) {
         //console.log("typeof(doc.data())", doc.data().body)
     });
   });
-  console.log("Content to be loaded:", { blogIds: ids, blogDatas: blogs});
+  //console.log("Content to be loaded:", { blogIds: ids, blogDatas: blogs});
   res.render("feed", { blogIds: ids, blogDatas: blogs});
 });
 
