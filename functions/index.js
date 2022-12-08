@@ -54,6 +54,27 @@ app.get("/create", function(req, res) {
   res.render("create")
 });
 
+// Global posts
+app.get("/feed", function(req, res) {
+
+  res.render("feed")
+});
+
+// user posts I guess
+app.get("/dashboard", function(req, res) {
+  var ids = [];
+  var blogs = [];
+  db.collection("blogs").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        ids.push(doc.id)
+        blogs.push(doc.data)
+        console.log(doc.id, " => ", doc.data());
+    });
+  });
+  var dynamicContent = { blogIds: ids, blogDatas: blogs};
+  res.render("dashboard")
+});
+
 //send to database
 app.post('/sendBlog', async (req, res) =>{
   const blog = {
@@ -77,7 +98,7 @@ app.get('/grabBlogs', (req, res) => {
         console.log(doc.id, " => ", doc.data());
     });
     res.redirect('/')
-});
+  });
 })
 
 process.on("uncaughtException", function(err) {
