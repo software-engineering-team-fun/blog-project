@@ -79,7 +79,8 @@ app.get("/feed", async function(req, res) {
     });
   });
   //console.log("Content to be loaded:", { blogIds: ids, blogDatas: blogs});
-  res.render("feed", { blogIds: ids, blogDatas: blogs});
+  // Have to reverse to get the newest one first
+  res.render("feed", { blogIds: ids.reverse(), blogDatas: blogs.reverse()});
 });
 
 // user posts I guess
