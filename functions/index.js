@@ -55,23 +55,25 @@ app.get("/create", function(req, res) {
 });
 
 // Global posts
-app.get("/feed", function(req, res) {
-
-  res.render("feed")
+app.get("/feed", async function(req, res) {
+  var ids = [];
+  var blogs = [];
+  var dat;
+  await db.collection("blogs").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        dat = doc.data()
+        ids.push(doc.id)
+        blogs.push(dat)
+        console.log("Feed:", doc.id, " => ", doc.data());
+        //console.log("typeof(doc.data())", doc.data().body)
+    });
+  });
+  console.log("Content to be loaded:", { blogIds: ids, blogDatas: blogs});
+  res.render("feed", { blogIds: ids, blogDatas: blogs});
 });
 
 // user posts I guess
 app.get("/dashboard", function(req, res) {
-  var ids = [];
-  var blogs = [];
-  db.collection("blogs").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        ids.push(doc.id)
-        blogs.push(doc.data)
-        console.log(doc.id, " => ", doc.data());
-    });
-  });
-  var dynamicContent = { blogIds: ids, blogDatas: blogs};
   res.render("dashboard")
 });
 

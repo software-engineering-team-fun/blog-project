@@ -36,23 +36,43 @@
     <div class="about-section">
         <h1>Global Feed</h1>
     </div>
-    <div class="wrapper">
+    {{#if blogDatas}}
+      <div class="wrapper">
+      {{#each blogDatas}}
+            <!-- 1st blog post -->
+            <div class="card" onclick="alert('Working on it!');">
+                <!-- #tags,heading,description -->
+                <div class="card-body">
+                    <h2 class="blog-title">{{this.title}}</h2>
+                    <p class="blog-description">{{this.body}}</p>
+            <!-- Profile image, name, followers -->
+                    <div class="card-profile">
+                    <div class="card-profile-info">
+                        <h3 class="profile-name">Username</h3>
+                    </div>
+                    </div>
+                </div>
+            </div>
+      {{/each}}
+      </div>
+      {{else}}
+        <div class="wrapper">
         <!-- 1st blog post -->
-        <div class="card" onclick="window.location='http://localhost:3000/clicked'">
+        <div class="card" onclick="window.location='/home'">
             <!-- #tags,heading,description -->
             <div class="card-body">
-                <h2 class="blog-title">Test</h2>
-                <p class="blog-description">Description</p>
+                <h2 class="blog-title">Sorry, no blogs were found!</h2>
+                <p class="blog-description">We may be having errors pulling blogs, check back later!</p>
 
         <!-- Profile image, name, followers -->
                 <div class="card-profile">
                 <div class="card-profile-info">
-                    <h3 class="profile-name">Username</h3>
+                    <h3 class="profile-name">admin</h3>
                 </div>
                 </div>
             </div>
         </div>
-        <!-- 1st blog post - The End -->
+      {{/if}}
     </div>
 
 </body>
