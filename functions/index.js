@@ -8,6 +8,12 @@ const express = require("express");
 const { engine } = require("express-handlebars")
 const path = require("path");
 const cors = require("cors")({origin: true});
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 
 //setting up cors and bodyparser
 const app = express();
@@ -54,8 +60,32 @@ app.get("/create", function(req, res) {
   res.render("create")
 });
 
-app.get("/feed", function(req, res) {
-  res.render("feed")
+// Global posts
+app.get("/feed", async function(req, res) {
+  var ids = [];
+  var blogs = [];
+  var dat;
+  await db.collection("blogs").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        dat = doc.data()
+        // I know we joked about not caring about security but since we're deploying publicly
+        // this is probably the responsible thing to do
+        dat.title = DOMPurify.sanitize(dat.title, {USE_PROFILES: {html: true}});
+        dat.body = DOMPurify.sanitize(dat.body, {USE_PROFILES: {html: true}});
+        ids.push(doc.id)
+        blogs.push(dat)
+        console.log("Feed:", doc.id, " => ", doc.data());
+        //console.log("typeof(doc.data())", doc.data().body)
+    });
+  });
+  //console.log("Content to be loaded:", { blogIds: ids, blogDatas: blogs});
+  // Have to reverse to get the newest one first
+  res.render("feed", { blogIds: ids.reverse(), blogDatas: blogs.reverse()});
+});
+
+// user posts I guess
+app.get("/dashboard", function(req, res) {
+  res.render("dashboard")
 });
 
 //send to database
@@ -81,7 +111,7 @@ app.get('/grabBlogs', (req, res) => {
         console.log(doc.id, " => ", doc.data());
     });
     res.redirect('/')
-});
+  });
 })
 
 process.on("uncaughtException", function(err) {
