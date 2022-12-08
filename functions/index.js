@@ -8,6 +8,12 @@ const express = require("express");
 const { engine } = require("express-handlebars")
 const path = require("path");
 const cors = require("cors")({origin: true});
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 
 //setting up cors and bodyparser
 const app = express();
@@ -62,6 +68,9 @@ app.get("/feed", async function(req, res) {
   await db.collection("blogs").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         dat = doc.data()
+        // I know we joked about not caring about security but since we're deploying publicly
+        // this is probably the responsible thing to do
+        dat.body = DOMPurify.sanitize(dat.body, {USE_PROFILES: {html: true}});
         ids.push(doc.id)
         blogs.push(dat)
         console.log("Feed:", doc.id, " => ", doc.data());
