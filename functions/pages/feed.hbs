@@ -40,11 +40,11 @@
       <div class="wrapper">
       {{#each blogDatas}}
             <!-- 1st blog post -->
-            <div class="card" onclick="alert('Working on it!');">
+            <div class="card" onclick="alert('Working on full blown pages! Check back later!');">
                 <!-- #tags,heading,description -->
                 <div class="card-body">
                     <h2 class="blog-title">{{this.title}}</h2>
-                    <p class="blog-description">{{this.body}}</p>
+                    <span class="blog-description">{{{this.body}}}</span>
             <!-- Profile image, name, followers -->
                     <div class="card-profile">
                     <div class="card-profile-info">
@@ -76,7 +76,7 @@
     </div>
 
 </body>
-          <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a>
+        <!--  <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a> -->
       </div>
   </div>
 </nav>
