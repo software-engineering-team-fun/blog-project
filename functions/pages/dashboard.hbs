@@ -37,52 +37,45 @@
   </div>
 </nav>
     <div class="about-section">
-        <h1>Global Feed</h1>
+        <h1>Your Blogs</h1>
     </div>
-    {{#if blogDatas}}
-      <div class="wrapper">
-      {{#each blogDatas}}
-            <!-- 1st blog post -->
-            <div class="card" onclick="alert('Working on full blown pages! Check back later!');">
-                <!-- #tags,heading,description -->
-                <div class="card-body">
-                    <h2 class="blog-title">{{this.title}}</h2>
-                    <span class="blog-description">{{{this.body}}}</span>
-            <!-- Profile image, name, followers -->
-                    <div class="card-profile">
-                    <div class="card-profile-info">
-                        <h3 class="profile-name">Username</h3>
-                    </div>
-                    </div>
-                </div>
-            </div>
-      {{/each}}
-      </div>
-      {{else}}
-        <div class="wrapper">
-        <!-- 1st blog post -->
-        <div class="card" onclick="window.location='/home'">
-            <!-- #tags,heading,description -->
-            <div class="card-body">
-                <h2 class="blog-title">Sorry, no blogs were found!</h2>
-                <p class="blog-description">We may be having errors pulling blogs, check back later!</p>
+    <div class="row" style="padding-top:10vmin">
+        <div class="col-sm" style="text-align:center">
+            <h1>{{#if curruser}}
+                {{curruser}}
+            {{else}}
+                Test User
+            {{/if}}</h1>
+            <h5>Posts: {{#if posts}}
+            {{posts}}
+            {{else}}
+            1
+            {{/if}}
+            </h5>
+        </div>
+        <div class="col-sm" style="padding-right:50vmin">
+            <div class="wrapper">
+                <!-- 1st blog post -->
+                <div class="card" onclick="window.location='http://localhost:3000/clicked'">
+                    <!-- #tags,heading,description -->
+                    <div class="card-body">
+                        <h2 class="blog-title">Test</h2>
+                        <p class="blog-description">Description</p>
 
-        <!-- Profile image, name, followers -->
-                <div class="card-profile">
-                <div class="card-profile-info">
-                    <h3 class="profile-name">admin</h3>
+                <!-- Profile image, name, followers -->
+                        <div class="card-profile">
+                        <div class="card-profile-info">
+                            <h3 class="profile-name">Username</h3>
+                        </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                <!-- 1st blog post - The End -->
             </div>
         </div>
-      {{/if}}
+
     </div>
 
+
 </body>
-        <!--  <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a> -->
-      </div>
-  </div>
-</nav>
-</body>
-<script src="dist/bundle.js"></script>
 </html>

@@ -25,6 +25,9 @@
         <a class="nav-link" href="/about">About</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/feed">Feed</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/create">Create</a>
       </li>
     </ul>
@@ -33,32 +36,35 @@
       </div>
   </div>
 </nav>
+
+
     <div class="container text-center">
       <div class="row ">
-          <div class="col-md-6 mx-auto">
+          <div  id = "EmailLogin"  class="col-md-6 mx-auto">
             <div class="card card-body bg-light mt-5">
               <h2>Login</h2>
 
               <form>
                 <div class="form-group">
                   <label for="email">Email: <sup>*</sup></label>
-                    <input id="txtEmail" type="email" name="email" class="form-control form-control-lg">
+                    <input id="loginEmail" type="email" name="email" class="form-control form-control-lg">
                 </div>
                 <div class=" form-group">
                   <label for="password">Password: <sup>*</sup></label>
-              <input id="txtPassword" name="password" class="form-control form-control-lg" type="password">
+              <input id="loginPassword" name="password" class="form-control form-control-lg" type="password">
             </div>
 
             <div class=" row">
             <div style ="padding-top:1.2rem" class="col">
-              <input id="btnLogin" style = "background-color: #474e5d" value="Login" class="btn btn-primary btn-block">
+              <button id="btnLogin" style = "background-color: #474e5d" value="Login" class="btn btn-primary btn-block" type="button">Login</button>
             </div>
           </div>
 
         </form>
       </div>
     </div>
-      <div class="col-md-6 mx-auto">
+
+      <div  id = "EmailSignUp"  class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
         <h2>Create An Account</h2>
         
@@ -76,20 +82,80 @@
 
             <div class=" row">
             <div style ="padding-top:1.2rem" class="col">
-              <input id="btnSignup" style = "background-color: #474e5d" value="Sign Up" class="btn btn-primary btn-block">
+              <button id="btnSignup" style = "background-color: #474e5d" value="Sign Up" class="btn btn-primary btn-block" type="button">Sign up</button>
             </div>
           </div>
           </form>
           </div>
         </div>
-              <h1>OR</h1>
+            <h1 id = "orHeader">OR</h1>
+
               <div class="row ">
                 <!-- TODO: Add functionality -->
-                <button class="button mt-2" value="google_sign_in" type="button">Sign In with google</button>
+                <button id = "googleSignIn">Google Login</button>
+                  <div id = "userDetails"> </div>
+                  <button id = "googleLogout" style = "display: none" "text-align:center;">Google Signout</button>
               </div>
-          </div>
-      </div>
+            </div>
 
+      </div>
+<script src="/__/firebase/7.6.1/firebase-app.js"></script>
+  <script src="/__/firebase/7.6.1/firebase-auth.js"></script>
   </body>
-  <script src="js/bundle.js"></script>
+  
+  <script src="dist/bundle.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script>
+document.getElementById('googleSignIn').addEventListener('click',GoogleLogin)
+document.getElementById('googleLogout').addEventListener('click',GoogleLogout)
+
+let provider = new firebase.auth.GoogleAuthProvider()
+
+function  GoogleLogin(){
+  console.log('Login Btn Call')
+  firebase.auth().signInWithPopup(provider).then(res=>{
+    console.log(res.user)
+      showUserDetails(res.user)
+      let user = res.user
+      if (user != null){
+        document.getElementById("googleSignIn").style.display = "none";
+        document.getElementById("googleLogout").style.display = "block";
+        document.getElementById('EmailLogin').style.display = "none";
+        document.getElementById('EmailSignUp').style.display = "none";
+        document.getElementById('orHeader').style.display = "none";
+
+}
+
+  }).catch(e=>{
+  console.log(e)
+ })
+ }
+ function GoogleLogout(){
+    console.log("Logout Btn call")
+    firebase.auth().signOut().then(() =>{
+    }).catch(e =>{
+      console.log(e)
+    })
+    document.getElementById("googleSignIn").style.display = "block";
+    document.getElementById("googleLogout").style.display = "none";
+    document.getElementById('userDetails').innerHTML = "";
+    document.getElementById('EmailLogin').style.display = "block";
+    document.getElementById('EmailSignUp').style.display = "block";
+    document.getElementById('orHeader').style.display = "block";
+
+
+ }
+
+  function showUserDetails(user){
+    document.getElementById('userDetails').innerHTML = `
+    <p> Name: ${user.displayName}</p>
+    <p> Email: ${user.email}</p> 
+    <p> User ID: ${user.uid}</p> `
+
+    
+}
+
+</script>
+<script src="/__/firebase/init.js?useEmulator=true"></script>
 </html>
