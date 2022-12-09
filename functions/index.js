@@ -59,7 +59,9 @@ app.get("/login", function(req, res) {
 app.get("/create", function(req, res) {
   res.render("create")
 });
-
+app.get("/logout", function(req, res) {
+  res.render("logout")
+});
 // Global posts
 app.get("/feed", async function(req, res) {
   var ids = [];
@@ -72,6 +74,9 @@ app.get("/feed", async function(req, res) {
         // this is probably the responsible thing to do
         dat.title = DOMPurify.sanitize(dat.title, {USE_PROFILES: {html: true}});
         dat.body = DOMPurify.sanitize(dat.body, {USE_PROFILES: {html: true}});
+        dat.displayName = DOMPurify.sanitize(dat.displayName, {USE_PROFILES: {html: true}});
+        dat.userID = DOMPurify.sanitize(dat.userID, {USE_PROFILES: {html: true}});
+
         ids.push(doc.id)
         blogs.push(dat)
         console.log("Feed:", doc.id, " => ", doc.data());
@@ -92,7 +97,9 @@ app.get("/dashboard", function(req, res) {
 app.post('/sendBlog', async (req, res) =>{
   const blog = {
     title: req.body.title,
-    body: req.body.body
+    body: req.body.body,
+    displayName: req.body.displayName,
+    userID: req.body.userID
   }
   console.log(blog)
   db.collection("blogs").add(blog)
