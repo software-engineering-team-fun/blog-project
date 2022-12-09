@@ -115,3 +115,7 @@ dist
 *firebase-adminsdk-*.json
 
 .firebase
+
+
+#privatekey
+privatekey.json

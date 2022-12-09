@@ -2,7 +2,7 @@
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin")
-const serviceAccount = require("./final-project-9b3c9-firebase-adminsdk-dr6w0-8fc882c766.json");
+const serviceAccount = require("./privatekey.json");
 const bodyParser = require("body-parser")
 const express = require("express");
 const { engine } = require("express-handlebars")
