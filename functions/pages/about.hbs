@@ -19,7 +19,6 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <li class="nav-item active">
         <a class="nav-link" href="/home">Home</a>
       </li>
       <li class="nav-item">
@@ -29,10 +28,13 @@
         <a class="nav-link" href="/feed">Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/create">Create</a>
+        <a class="nav-link" id = "createNav" href="/create">Create</a>
       </li>
+      </ul>
     <div class="navbar-nav ms-auto">
-          <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a>
+          <a id="loginNav"  style="padding-right:1.2rem"class="nav-link"style = "display:block;" href="/login"  >Login </a>
+          <a id = "logoutNav" style="padding-right:1.2rem"class="nav-link" style = "display:block;" href="/logout">Logout </a>
+
       </div>
   </div>
 </nav>
@@ -116,7 +118,31 @@
     <p class="text-center">Using Firebase for the authication, hosting, and database.</p>
   </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
 </body>
-<script src="dist/bundle.js"></script>
+<script> 
+ firebase.initializeApp({
+  apiKey: "AIzaSyBZ5qRQ_Wj6uidTds4zrAySVhSSZlAPrGk",
+  authDomain: "final-project-9b3c9.firebaseapp.com",
+  projectId: "final-project-9b3c9",
+  storageBucket: "final-project-9b3c9.appspot.com",
+  messagingSenderId: "301025290077",
+  appId: "1:301025290077:web:088624a5e6aeb37ba2eab4",
+  measurementId: "G-P9V184X1V5"
+});
+firebase.auth().onAuthStateChanged((user) => {
+   if (user) {
+      document.getElementById("loginNav").style.display = "none";
+      document.getElementById("logoutNav").style.display = "block";
+      document.getElementById("createNav").style.display = "block";
+    } else {
+        document.getElementById("loginNav").style.display = "block";
+        document.getElementById("logoutNav").style.display = "none";
+        document.getElementById("createNav").style.display = "none";
+    }
+  });
+</script>
+
 </html>
 

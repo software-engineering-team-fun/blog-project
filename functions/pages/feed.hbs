@@ -28,11 +28,13 @@
         <a class="nav-link" href="/feed">Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/create">Create</a>
+        <a class="nav-link"id = "createNav" href="/create">Create</a>
       </li>
     </ul>
     <div class="navbar-nav ms-auto">
-          <a style="padding-right:1.2rem"class="nav-link" href="/login">Login </a>
+          <a style="padding-right:1.2rem"class="nav-link" id = "loginNav"  href="/login">Login </a>
+          <a style="padding-right:1.2rem"class="nav-link" id = "logoutNav"  href="/logout">Logout </a>
+
       </div>
   </div>
 </nav>
@@ -51,7 +53,9 @@
             <!-- Profile image, name, followers -->
                     <div class="card-profile">
                     <div class="card-profile-info">
-                        <h3 class="profile-name">Username</h3>
+                        <h3 class="profile-name">Username:{{{this.displayName}}} </h3> 
+                        <span class="profile-id">User ID:{{{this.userID}}} </span> 
+
                     </div>
                     </div>
                 </div>
@@ -77,12 +81,38 @@
         </div>
       {{/if}}
     </div>
-
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
 </body>
         <!--  <a style="padding-right:1.2rem"class="nav-link" href="/login" id="loginNav">Login </a> -->
       </div>
   </div>
 </nav>
 </body>
-<script src="dist/bundle.js"></script>
+<script> 
+ firebase.initializeApp({
+  apiKey: "AIzaSyBZ5qRQ_Wj6uidTds4zrAySVhSSZlAPrGk",
+  authDomain: "final-project-9b3c9.firebaseapp.com",
+  projectId: "final-project-9b3c9",
+  storageBucket: "final-project-9b3c9.appspot.com",
+  messagingSenderId: "301025290077",
+  appId: "1:301025290077:web:088624a5e6aeb37ba2eab4",
+  measurementId: "G-P9V184X1V5"
+});
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+    
+      document.getElementById("loginNav").style.display = "none";
+      document.getElementById("logoutNav").style.display = "block";
+      document.getElementById("createNav").style.display = "block";
+
+
+    } else {
+        document.getElementById("loginNav").style.display = "block";
+        document.getElementById("logoutNav").style.display = "none";
+        document.getElementById("createNav").style.display = "none";
+
+    }
+  });
+</script>
 </html>
