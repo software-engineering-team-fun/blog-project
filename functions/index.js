@@ -62,6 +62,10 @@ app.get("/create", function(req, res) {
 app.get("/logout", function(req, res) {
   res.render("logout")
 });
+
+app.get("/contact", function(req, res) {
+  res.render("contact")
+});
 // Global posts
 app.get("/feed", async function(req, res) {
   var ids = [];
@@ -105,7 +109,7 @@ app.post('/sendBlog', async (req, res) =>{
   db.collection("blogs").add(blog)
 	.then((docRef) => {
 		console.log("Document written with ID: ", docRef.id);
-    res.redirect("/");
+    res.redirect("/feed");
 	})
 	.catch((error) => {
 		console.error("Error adding document: ", error);
@@ -121,8 +125,27 @@ app.get('/grabBlogs', (req, res) => {
   });
 })
 
+//send to database
+app.post('/sendContact', async (req, res) =>{
+  const contact = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    msg: req.body.msg
+  }
+  db.collection("contacts").add(contact)
+	.then((docRef) => {
+		console.log("Document written with ID: ", docRef.id);
+    res.redirect("/feed");
+	})
+	.catch((error) => {
+		console.error("Error adding document: ", error);
+	});
+})
+
 process.on("uncaughtException", function(err) {
   console.log(err);
 });
+
 exports.app = functions.https.onRequest(app);
 /* eslint-disable eol-last */
