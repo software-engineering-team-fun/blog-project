@@ -143,6 +143,25 @@ app.post('/sendContact', async (req, res) =>{
 	});
 })
 
+// 404 - Page couldn't be found
+app.use((req, res) => {
+  res.status(404);
+  res.render(404);
+});
+
+// 403 - Page was forbidden
+app.use((req, res) => {
+  res.status(403);
+  res.render(403);
+});
+
+// 500 - Internal Server Error
+app.use((err, req, res, next) => {
+  console.error(err.message)
+  res.status(500)
+  res.render('500')
+})
+
 process.on("uncaughtException", function(err) {
   console.log(err);
 });
