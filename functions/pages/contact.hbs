@@ -11,33 +11,35 @@
     <title>Contact</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <a style="padding-left:1.0rem" class="navbar-brand">LiveBlog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/feed">Feed</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id = "createNav" style = "display: none" href="/create">Create</a>
-            </li>
-            <li class="nav-item">
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+       <a style="padding-left:1.0rem" class="navbar-brand">LiveBlog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id = "createNav" href="/create">Create</a>
+      </li>
+      <li class="nav-item">
                 <a class="nav-link" href="/contact">Contact Us</a>
-            </li>
-        </ul>
+      </li>
+      </ul>
     <div class="navbar-nav ms-auto">
-          <a style="padding-right:1.2rem"class="nav-link" id = "loginNav"  href="/login">Login </a>
-          <a style="padding-right:1.2rem"class="nav-link" id = "logoutNav"  href="/logout">Logout </a>=
-    </div>
+          <a id="loginNav"  style="padding-right:1.2rem"class="nav-link"style = "display:block;" href="/login"  >Login </a>
+          <a id = "logoutNav" style="padding-right:1.2rem"class="nav-link" style = "display:block;" href="/logout">Logout </a>
+
+      </div>
   </div>
 </nav>
 <!-- Credit: https://bootsnipp.com/snippets/7nmOW-->
@@ -70,4 +72,29 @@
                 </div>
             </form>
 </div>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
 </body>
+ <script> 
+ firebase.initializeApp({
+  apiKey: "AIzaSyBZ5qRQ_Wj6uidTds4zrAySVhSSZlAPrGk",
+  authDomain: "final-project-9b3c9.firebaseapp.com",
+  projectId: "final-project-9b3c9",
+  storageBucket: "final-project-9b3c9.appspot.com",
+  messagingSenderId: "301025290077",
+  appId: "1:301025290077:web:088624a5e6aeb37ba2eab4",
+  measurementId: "G-P9V184X1V5"
+});
+firebase.auth().onAuthStateChanged((user) => {
+   if (user) {
+      document.getElementById("loginNav").style.display = "none";
+      document.getElementById("logoutNav").style.display = "block";
+      document.getElementById("createNav").style.display = "block";
+    } else {
+        document.getElementById("loginNav").style.display = "block";
+        document.getElementById("logoutNav").style.display = "none";
+        document.getElementById("createNav").style.display = "none";
+    }
+  });
+</script>
+</html>
