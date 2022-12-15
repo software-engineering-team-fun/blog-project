@@ -14,6 +14,12 @@ ROUTES = [
     "/about"
 ]
 
+# Python decorator to prevent certain tests from being used
+def deprecated(function):
+    def handler():
+        print("[!] Test has temporarily been deprecated until edits have been made to make the test function correctly!")
+    return handler
+
 def is_up(route: str = ""):
     if route == "":
         print("[*] Please call is_up() with a route. Ex: is_up('/about')\n  \\\\--> Type `ROUTES` to see a list of routes.")
@@ -32,6 +38,7 @@ def is_allup():
     return resps
 
 # TODO: Prompt for user cookie when authentication is fixed
+@deprecated
 def generate_posts():
     print("[*] Note: This does not mean that the /create route is user friendly.")
     titles = [
@@ -57,5 +64,9 @@ def generate_posts():
     print(f"[+] Go check {URL}/feed to see if all of it showed up")
     print("  \\\\--> What, you thought I was going to automate that part? There's only a week left on this project lmao.")
 
-
-
+# Keeps track of all of the tests written so far
+TESTS = [
+    is_up,
+    is_allup,
+    generate_posts
+]

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut} from "firebase/auth";
+import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -53,14 +53,21 @@ const createAccount = async () => {
   const accountEmail = signupEmail.value;
   const accountPassword = signupPassword.value;
   try{
-    const userCredentials = await createUserWithEmailAndPassword(auth, accountEmail, accountPassword);
+    const userCredentials = await createUserWithEmailAndPassword(auth, accountEmail, accountPassword)
+    .then(async (result) => {
+      return await updateProfile(result.user, { 
+        displayName: signupEmail.value.split("@")[0] 
+      })
+    }).catch((err) => {
+      console.log(err);
+    });
     console.log(userCredentials.user);
     console.log("ACCOUNT CREATED");
     window.location.replace('/feed');
   }
   catch(error){
     console.log(error);
-    alert("INVALID USERNAME OR PASSWORD");
+    alert("ACCOUNT CREATION FAILED");
   }
 }
 
@@ -96,3 +103,29 @@ const logout = async () => {
 if(window.location.pathname == "/create" || window.location.pathname == "/feed"){
   btnSignout.addEventListener("click", logout);
 }
+
+// Restrict the /create page to a logged in user only
+// TODO: Use Firebase to authenticate server-side because it's much
+//       easier to work with imo
+//    ref: https://fireship.io/snippets/express-middleware-auth-token-firebase/
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+      getAuth(),
+      (user) => {
+        removeListener();
+        resolve(user);
+      },
+      reject
+    )
+  })
+}
+
+if(window.location.pathname == "/create"){
+  if (await getCurrentUser()) {
+    // pass
+  } else {
+    alert("Please sign-in at /login to create posts!");
+    window.location.replace('/login');
+  }
+};
