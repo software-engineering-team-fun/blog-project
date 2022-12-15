@@ -10,7 +10,7 @@
 Just a blog website. Make posts. Read posts. Interact with posts. Whatever people do these days.
 
 <p align="center">
-<img src="assets/demo.gif" height=66% width=66%>
+<img src="assets/demo.gif" height=80% width=80%>
 </p>
 
 - Supports Google authentication
