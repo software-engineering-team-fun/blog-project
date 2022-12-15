@@ -44,7 +44,7 @@
     <div class="container text-center">
               <div class="row ">
                   <div id = "userDetails">   </div>
-                  <button id = "googleLogout" style = "display: block" "text-align:center;">Google Signout</button>
+                  <button id = "googleLogout" style = "display: block" "text-align:center;">Signout</button>
             </div>
       </div>
 <script src="/__/firebase/7.6.1/firebase-app.js"></script>
@@ -79,8 +79,7 @@ document.getElementById('googleLogout').addEventListener('click',GoogleLogout)
       // The user is logged in
        document.getElementById('userDetails').innerHTML = `
         <p> Name: ${user.displayName}</p>
-        <p> Email: ${user.email}</p> 
-        <p> User ID: ${user.uid}</p> `
+        <p> Email: ${user.email}</p> `
     } else {
       // The user is not logged in
       document.getElementById("user-info").innerHTML = "Please sign in to continue.";

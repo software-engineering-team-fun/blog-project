@@ -14,7 +14,6 @@ const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 
-
 //setting up cors and bodyparser
 const app = express();
 app.use(cors);
@@ -56,9 +55,10 @@ app.get("/login", function(req, res) {
     res.render("login")
 });
 
-app.get("/create", function(req, res) {
-  res.render("create")
+app.get("/create", async function(req, res) {
+  res.render("create");
 });
+
 app.get("/logout", function(req, res) {
   res.render("logout")
 });
@@ -92,13 +92,16 @@ app.get("/feed", async function(req, res) {
   res.render("feed", { blogIds: ids.reverse(), blogDatas: blogs.reverse()});
 });
 
+// TODO: Implement a user only dashboard
 // user posts I guess
-app.get("/dashboard", function(req, res) {
-  res.render("dashboard")
-});
+//app.get("/dashboard", function(req, res) {
+//  res.render("dashboard")
+//});
 
-//send to database
-app.post('/sendBlog', async (req, res) =>{
+// send to database
+// TODO: Prevent people from crafting a curl request directly to the endpoint
+//       hackers >:(
+app.post('/sendBlog', async (req, res) => {
   const blog = {
     title: req.body.title,
     body: req.body.body,
@@ -141,6 +144,25 @@ app.post('/sendContact', async (req, res) =>{
 	.catch((error) => {
 		console.error("Error adding document: ", error);
 	});
+})
+
+// 404 - Page couldn't be found
+app.use((req, res) => {
+  res.status(404);
+  res.render("404");
+});
+
+// 403 - Page was forbidden
+app.use((req, res) => {
+  res.status(403);
+  res.render("403");
+});
+
+// 500 - Internal Server Error
+app.use((err, req, res, next) => {
+  console.error(err.message)
+  res.status(500)
+  res.render('500')
 })
 
 process.on("uncaughtException", function(err) {
